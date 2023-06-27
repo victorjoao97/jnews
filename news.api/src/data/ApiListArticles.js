@@ -4,6 +4,9 @@ class ApiListArticles {
     }
 
     async getArticles() {
+        if (!this.repository) {
+            throw new Error('ListArticlesNewsApiRepo is undefined')
+        }
         return this.repository.getArticles()
     }
 }

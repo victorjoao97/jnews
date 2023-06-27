@@ -3,10 +3,23 @@ class ListArticlesController {
         this.listArticles = listArticles
     }
     async handle(httpRequest) {
-        const response = await this.listArticles.getArticles()
-        return {
-            statusCode: 200,
-            body: response
+        if (!this.listArticles) {
+            return {
+                statusCode: 500,
+                body: new Error('ApiListArticles undefined')
+            }
+        }
+        try {
+            const response = await this.listArticles.getArticles()
+            return {
+                statusCode: 200,
+                body: response
+            }
+        } catch (error) {
+            return {
+                statusCode: 500,
+                body: error
+            }
         }
     }
 }

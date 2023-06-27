@@ -11,4 +11,9 @@ describe.skip('List News from API', () => {
         expect(response[0]).toHaveProperty('author')
         expect(response[0]).toHaveProperty('content')
     })
+    test('Should throw error if ListArticlesNewsApiRepo throws', async () => {
+        const sut =  new ListArticlesNewsApiRepo()
+        const promise = sut.getArticles()
+        expect(promise).rejects.toThrow('Error on get articles')
+    })
 })

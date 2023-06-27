@@ -12,6 +12,12 @@ class ListArticlesNewsApiRepoStub {
     }
 }
 
+class ApiListArticlesErrorStub {
+    async getArticles() {
+        throw new Error('Error on get articles from API')
+    }
+}
+
 const makeSut = () => {
     const listArticlesController = new ListArticlesController(new ApiListArticles(new ListArticlesNewsApiRepoStub()))
     return {
@@ -31,5 +37,19 @@ describe('List articles in controller', () => {
         expect(body[0].description).toBe('Descrição da notícia 1')
         expect(body[0].author).toBe('Autor da notícia 1')
         expect(body[0].content).toBe('Conteúdo da notícia 1')
+    })
+    test('Should throw error if ApiListArticles undefined', async () => {
+        const listArticlesController = new ListArticlesController()
+        const httpRequest = {}
+        const response = await listArticlesController.handle(httpRequest)
+        expect(response.statusCode).toBe(500)
+        expect(response.body).toEqual(new Error('ApiListArticles undefined'))
+    })
+    test('Should throw error if ApiListArticles throws', async () => {
+        const listArticlesController = new ListArticlesController(new ApiListArticlesErrorStub())
+        const httpRequest = {}
+        const response = await listArticlesController.handle(httpRequest)
+        expect(response.statusCode).toBe(500)
+        expect(response.body).toEqual(new Error('Error on get articles from API'))
     })
 })
