@@ -1,7 +1,6 @@
 version: '3.4'
 services:
   api:
-    image: node:18-alpine3.17
     build: ./news.api
     ports:
       - "3001:3001"
@@ -11,6 +10,10 @@ services:
       - ./news.api/package-lock.json:/app/package-lock.json
     environment:
       - PORT=3001
+  front:
+    build: ./news.front
+    ports:
+      - "8080:8080"
 #       - DATABASE_URL=mysql://news:news@mysql:3306/news
 
 #   mysql:
