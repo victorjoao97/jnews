@@ -12,7 +12,10 @@ class ListArticlesNewsApiRepo {
                     title: article.title,
                     description: article.description,
                     author: article.author,
-                    content: article.content
+                    content: article.content,
+                    urlToImage: article.urlToImage,
+                    publishedAt: article.publishedAt,
+                    url: article.url
                 }
             })
         } catch (error) {
@@ -27,7 +30,10 @@ class ListArticlesNewsApiRepo {
                     title: article.title,
                     description: article.description,
                     author: article.author,
-                    content: article.content
+                    content: article.content,
+                    urlToImage: article.urlToImage,
+                    publishedAt: article.publishedAt,
+                    url: article.url
                 }
             })
         } catch (error) {
