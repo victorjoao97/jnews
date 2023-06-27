@@ -7,3 +7,5 @@
 
 Foram aplicados conceitos de Clean Architeture, Clean Code, e alguns Design Patterns como Adapter e Factories.
 As camadas da aplicação estão desacopladas uma das outras, dessa forma fica fácil trocar do Express para outro Framework, bastando criar um novo Adpater para esse Framework.
+
+Inicialmente foi planejado salvar os artigos consultados na API em um armazenamento interno da API para melhoria de performance, mas optei por deixar para um segundo momento.
