@@ -17,20 +17,25 @@ class ListArticlesMysqlRepo {
               allowNull: false
             },
             description: {
-              type: DataTypes.STRING,
+              type: DataTypes.TEXT,
               allowNull: false
             },
             author: {
               type: DataTypes.STRING
             },
             content: {
-                type: DataTypes.STRING
+                type: DataTypes.TEXT
             }
           }, {
             // Other model options go here
           });
-        await this.#ArticleModel.sync({ force: true })
+        await this.#ArticleModel.sync({alter: true})
         this.#connected = true
+    }
+
+    async migrate() {
+        await this.connect()
+        await this.#ArticleModel.sync({ force: true })
     }
 
     async saveArticles(articles) {

@@ -1,7 +1,7 @@
 const supertest = require('supertest')
 const {app} = require('../config/app')
 
-describe.skip('List articles in route', () => {
+describe('List articles in route', () => {
     test('Should return a list with a news', async () => {
         const response = await supertest(app)
             .get('/api/articles')
