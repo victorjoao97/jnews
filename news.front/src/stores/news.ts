@@ -45,6 +45,9 @@ export const useNewsStore = defineStore('news', () => {
     country.value = countryParam
     newsList.value = []
   }
+  function setNewsList(newsListParam: News[]) {
+    newsList.value = newsListParam
+  }
 
   return {
     newsList,
@@ -57,6 +60,7 @@ export const useNewsStore = defineStore('news', () => {
     setCountry,
     country,
     newsListOrdered,
-    actualIndex
+    actualIndex,
+    setNewsList
   }
 })

@@ -20,7 +20,7 @@ const detailViewIndex = (indexNews: number) => {
 }
 </script>
 <template>
-  <section v-if="newsList.length">
+  <section v-if="newsList?.length">
     <ul>
       <li v-for="(news, index) in newsList" v-bind:key="index">
         <img
