@@ -1,8 +1,10 @@
 const express = require('express')
-const setupMiddlewares = require('./middlewares')
+const middlewares = require('./middlewares')
+const routes = require('./routes')
 
 const app = express()
-setupMiddlewares(app)
+middlewares(app)
+routes(app)
 
 module.exports = {
     app
