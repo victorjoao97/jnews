@@ -1,19 +1,38 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { RouterLink, RouterView, useRouter } from 'vue-router'
+import { countries, type Country } from './domain/constants/countries'
+import { useNewsStore } from './stores/news'
+import { ref, watch } from 'vue'
+
+const store = useNewsStore()
+const countrySelected = ref('br')
+const router = useRouter()
+
+watch(countrySelected, async (country: string) => {
+  router.push({ name: 'home' })
+  store.setCountry({
+    value: country,
+    text: countries.find((c: Country) => c.value === country)?.text ?? ''
+  })
+  await store.fetchNews()
+})
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+      <RouterLink to="/">
+        <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="400" />
+      </RouterLink>
+      <select v-model="countrySelected">
+        <option
+          v-for="country in countries"
+          :key="country.value"
+          :value="country.value.toLocaleLowerCase()"
+        >
+          {{ country.text }}
+        </option>
+      </select>
     </div>
   </header>
 
@@ -21,6 +40,17 @@ import HelloWorld from './components/HelloWorld.vue'
 </template>
 
 <style scoped>
+select {
+  border: 1px solid var(--color-border);
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 400px;
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
 header {
   line-height: 1.5;
   max-height: 100vh;
@@ -61,10 +91,6 @@ nav a:first-of-type {
     display: flex;
     place-items: center;
     padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
   }
 
   header .wrapper {
