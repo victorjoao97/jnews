@@ -1,0 +1,13 @@
+version: '3.4'
+services:
+  api:
+    image: node:18-alpine3.17
+    build: ./news.api
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./news.api/src:/app/src
+      - ./news.api/package.json:/app/package.json
+      - ./news.api/package-lock.json:/app/package-lock.json
+    environment:
+      - PORT=3001
