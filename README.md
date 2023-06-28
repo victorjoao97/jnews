@@ -1,5 +1,6 @@
 # Projeto Full Stack de Consulta a API News https://newsapi.org/
-
+[![Vue.js CI](https://github.com/victorjoao97/jnews/actions/workflows/vue.js.yml/badge.svg)](https://github.com/victorjoao97/jnews/actions/workflows/vue.js.yml)
+[![Node.js CI API](https://github.com/victorjoao97/jnews/actions/workflows/node.js.yml/badge.svg)](https://github.com/victorjoao97/jnews/actions/workflows/node.js.yml)
 ## Como executar
 - `docker compose up`
 
