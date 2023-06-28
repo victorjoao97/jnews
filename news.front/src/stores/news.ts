@@ -18,6 +18,7 @@ export const useNewsStore = defineStore('news', () => {
 
   async function fetchNews() {
     const res = await fetch(
+      import.meta.env.VITE_API_ARTICLES_FROM_COUNTRY ||
       'http://localhost:3001/api/articles_from_country/' + country.value.value
     )
     const data = await res.json()

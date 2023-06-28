@@ -1,17 +1,23 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useNewsStore } from '@/stores/news'
 import { useRouter } from 'vue-router'
 
 const store = useNewsStore()
 const newsList = computed(() => store.newsListOrdered)
 const router = useRouter()
+const failedFetch = ref(false)
 
 onMounted(async () => {
   if (!store.country) {
     return
   }
-  await store.fetchNews()
+  try {
+    failedFetch.value = false
+    await store.fetchNews()
+  } catch (error) {
+    failedFetch.value = true
+  }
 })
 
 const detailViewIndex = (indexNews: number) => {
@@ -38,7 +44,8 @@ const detailViewIndex = (indexNews: number) => {
     </ul>
   </section>
   <section v-else>
-    <p>Carregando...</p>
+    <p v-if="!failedFetch">Carregando...</p>
+    <h1 v-else>Erro ao carregar notícias</h1>
   </section>
 </template>
 <style scoped>
