@@ -8,6 +8,7 @@ on:
     branches: [ "main" ]
     paths:
       - 'news.front/**'
+      - '.github/workflows/node.js.yml'
   pull_request:
     branches: [ "main" ]
     paths:
