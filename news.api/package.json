@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node src/main/server.js",
     "dev": "nodemon src/main/server.js",
-    "test": "jest --watch --detectOpenHandles"
+    "test:watch": "jest --watch --detectOpenHandles",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
