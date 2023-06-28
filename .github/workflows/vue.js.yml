@@ -30,7 +30,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+        cache-dependency-path: 'news.front'
     - run: npm ci
+      working-directory: 'news.front'
     - run: npm run build --if-present
-    - run: npm test
+      working-directory: 'news.front'
+    - run: npm run test:unit
       working-directory: 'news.front'
