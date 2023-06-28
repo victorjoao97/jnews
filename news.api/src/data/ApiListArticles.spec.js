@@ -32,7 +32,7 @@ describe('List News from API', () => {
         const promise = listNewsUC.getArticles()
         expect(promise).rejects.toThrow('ListArticlesNewsApiRepo is undefined')
     })
-    test('Should throw error if ListArticlesNewsApiRepo undefined', async () => {
+    test('Should throw error if ListArticlesNewsApiRepo throws exception', async () => {
         const listNewsUC = new ApiListArticles(new ListArticlesNewsApiRepoErrorStub())
         const promise = listNewsUC.getArticles()
         expect(promise).rejects.toThrow('Error on get articles from News API')

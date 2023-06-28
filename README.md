@@ -3,10 +3,14 @@
 ## Como executar
 - `docker compose up`
 
-### Endpoints
+### Após executar com o Docker-compose, os seguintes Endpoints estarão disponíveis:
 - API: http://localhost:3001
 - FRONT: http://localhost:8080
 - Articles API: http://localhost:3001/api/articles
+
+### Caso não queira executar o docker, a aplicação está publicada na Vercel (front) + Render (api)
+- Front: https://jnews.vercel.app
+- API: https://jnews.onrender.com
 
 Foram aplicados conceitos de Clean Architeture, Clean Code, e alguns Design Patterns como Adapter e Factories.
 As camadas da aplicação estão desacopladas uma das outras, dessa forma fica fácil trocar do Express para outro Framework, bastando criar um Adpater para esse Framework.

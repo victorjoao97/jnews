@@ -9,6 +9,7 @@ export const useNewsStore = defineStore('news', () => {
   const actualIndex = ref(0)
   const country = ref({ value: 'br', text: 'Brasil' } as Country)
   const newsListOrdered = computed(() => {
+    if (!newsList.value) return []
     return newsList.value.sort((a, b) => {
       if (a.urlToImage && !b.urlToImage) return -1
       if (!a.urlToImage && b.urlToImage) return 1
