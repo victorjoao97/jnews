@@ -31,7 +31,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-        working-directory: ./news.api
+        working-directory-path: ./news.api
     - run: npm ci
       working-directory: ./news.api
     - run: npm run build --if-present
